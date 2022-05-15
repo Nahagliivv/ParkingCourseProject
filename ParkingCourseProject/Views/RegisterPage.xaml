@@ -1,0 +1,86 @@
+﻿<Page x:Class="ParkingCourseProject.Views.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ParkingCourseProject.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="RegisterPage" Background="#808080">
+
+    <Grid >
+        <Grid VerticalAlignment="Center" HorizontalAlignment="Center" Height="700">
+            <Button Content="Зарегистрироваться"  HorizontalAlignment="Center"  VerticalAlignment="Top"  Width="380" Height="46" FontSize="28" Style="{StaticResource MainButton}" Padding="0" Margin="0,628,0,0" Click="Button_Click_1">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <TextBox Name="TextBoxName" HorizontalAlignment="Center" Height="40" TextWrapping="Wrap"  VerticalAlignment="Top" Width="380" Margin="0,227,0,0"  FontSize="20">
+                <TextBox.Template>
+                    <ControlTemplate>
+                        <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+
+            <TextBox Name="TextBoxAddr"  HorizontalAlignment="Center" Height="40" TextWrapping="Wrap"  VerticalAlignment="Top" Width="380" Margin="0,307,0,0"  FontSize="20" Cursor="Arrow">
+                <TextBox.Template>
+                    <ControlTemplate>
+                        <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <TextBox Name="TextBoxPhoneNumber"  HorizontalAlignment="Center" Height="40" TextWrapping="Wrap"  VerticalAlignment="Top" Width="380"  FontSize="20" Margin="0,388,0,0">
+                <TextBox.Template>
+                    <ControlTemplate>
+                        <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <PasswordBox Name="TextBoxPassword"  HorizontalAlignment="Center" Height="40"  VerticalAlignment="Top" Width="380" Margin="0,468,0,0"  FontSize="20">
+                <PasswordBox.Template>
+                    <ControlTemplate>
+                        <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
+                        </Border>
+                    </ControlTemplate>
+                </PasswordBox.Template>
+            </PasswordBox>
+            <PasswordBox Name="TextBoxRepeatPassword"  HorizontalAlignment="Center" Height="40"  VerticalAlignment="Top" Width="380" Margin="0,547,0,0"  FontSize="20">
+                <PasswordBox.Template>
+                    <ControlTemplate>
+                        <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
+                        </Border>
+                    </ControlTemplate>
+                </PasswordBox.Template>
+            </PasswordBox>
+            <Label Content="ФИО" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="169" FontSize="16" Foreground ="White" Margin="0,198,0,0"/>
+            <Label Content="Адрес" HorizontalAlignment="Left" VerticalAlignment="Top" Width="169" FontSize="16" Foreground ="White" Margin="0,278,0,0"/>
+            <Label Content="Номер телефона" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="169" FontSize="16" Foreground ="White" Margin="0,359,0,0"/>
+            <Label Content="Пароль" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="169" FontSize="16" Foreground ="White" Margin="0,439,0,0"/>
+            <Label Content="Повторите пароль" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="169" FontSize="16" Foreground ="White" Margin="0,518,0,0"/>
+            <Button Content="На главную"  HorizontalAlignment="Left"  VerticalAlignment="Top"  Width="94" Height="25" FontSize="16" Style="{StaticResource MainButton}" Padding="0" Margin="286,181,0,0" Click="Button_Click">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Label Content="" Name="TextBoxErrorMessage" HorizontalAlignment="Center" Margin="0,587,0,0" VerticalAlignment="Top" Height="41" Width="380" Foreground="Red"/>
+            <Ellipse Margin="110,19,110,521" Name="EllipsePicture" MouseDown="EllipsePicture_MouseDown">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="YourImage" />
+                </Ellipse.Fill>
+            </Ellipse>
+        </Grid>
+    </Grid>
+</Page>

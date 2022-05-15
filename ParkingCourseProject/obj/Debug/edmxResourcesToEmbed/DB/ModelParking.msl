@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ParkingDBModelContainer" CdmEntityContainer="ParkingDBEntities">
+    <EntitySetMapping Name="OWNER">
+      <EntityTypeMapping TypeName="ParkingDBModel.OWNER">
+        <MappingFragment StoreEntitySet="OWNER">
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="ID_Pass" ColumnName="ID_Pass" />
+          <ScalarProperty Name="ID_Place" ColumnName="ID_Place" />
+          <ScalarProperty Name="ID_Vehicle" ColumnName="ID_Vehicle" />
+          <ScalarProperty Name="ID_Owner" ColumnName="ID_Owner" />
+          <ScalarProperty Name="Full_name" ColumnName="Full_name" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Tel_number" ColumnName="Tel_number" />
+          <ScalarProperty Name="Debt" ColumnName="Debt" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PASS">
+      <EntityTypeMapping TypeName="ParkingDBModel.PASS">
+        <MappingFragment StoreEntitySet="PASS">
+          <ScalarProperty Name="ID_PASS" ColumnName="ID_PASS" />
+          <ScalarProperty Name="Start_date" ColumnName="Start_date" />
+          <ScalarProperty Name="End_date" ColumnName="End_date" />
+          <ScalarProperty Name="Special_place" ColumnName="Special_place" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PLACE">
+      <EntityTypeMapping TypeName="ParkingDBModel.PLACE">
+        <MappingFragment StoreEntitySet="PLACE">
+          <ScalarProperty Name="ID_Owner" ColumnName="ID_Owner" />
+          <ScalarProperty Name="ID_Vehicle" ColumnName="ID_Vehicle" />
+          <ScalarProperty Name="ID_Place" ColumnName="ID_Place" />
+          <ScalarProperty Name="Special_place" ColumnName="Special_place" />
+          <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEHICLE">
+      <EntityTypeMapping TypeName="ParkingDBModel.VEHICLE">
+        <MappingFragment StoreEntitySet="VEHICLE">
+          <ScalarProperty Name="IMG" ColumnName="IMG" />
+          <ScalarProperty Name="ID_Owner" ColumnName="ID_Owner" />
+          <ScalarProperty Name="ID_Vehicle" ColumnName="ID_Vehicle" />
+          <ScalarProperty Name="Vehicle_name" ColumnName="Vehicle_name" />
+          <ScalarProperty Name="Vehicle_number" ColumnName="Vehicle_number" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Special_vehicle" ColumnName="Special_vehicle" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

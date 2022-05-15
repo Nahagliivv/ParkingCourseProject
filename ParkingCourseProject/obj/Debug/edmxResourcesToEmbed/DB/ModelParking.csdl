@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ParkingDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="OWNER">
+    <Key>
+      <PropertyRef Name="ID_Owner" />
+    </Key>
+    <Property Name="ID_Owner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Full_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Adress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tel_number" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Debt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Vehicle" Type="Int32" />
+    <Property Name="ID_Place" Type="Int32" />
+    <Property Name="ID_Pass" Type="Int32" />
+    <NavigationProperty Name="PASS" Relationship="ParkingDBModel.FK__OWNER__ID_Pass__5812160E" FromRole="OWNER" ToRole="PASS" />
+    <NavigationProperty Name="PLACE" Relationship="ParkingDBModel.FK__OWNER__ID_Place__571DF1D5" FromRole="OWNER" ToRole="PLACE" />
+    <NavigationProperty Name="VEHICLE" Relationship="ParkingDBModel.FK__OWNER__ID_Vehicl__5629CD9C" FromRole="OWNER" ToRole="VEHICLE" />
+    <NavigationProperty Name="PLACE1" Relationship="ParkingDBModel.FK__PLACE__ID_Owner__5535A963" FromRole="OWNER" ToRole="PLACE" />
+    <NavigationProperty Name="VEHICLE1" Relationship="ParkingDBModel.FK__VEHICLE__ID_Owne__534D60F1" FromRole="OWNER" ToRole="VEHICLE" />
+    <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="PASS">
+    <Key>
+      <PropertyRef Name="ID_PASS" />
+    </Key>
+    <Property Name="ID_PASS" Type="Int32" Nullable="false" />
+    <Property Name="Start_date" Type="DateTime" Precision="0" />
+    <Property Name="End_date" Type="DateTime" Precision="0" />
+    <Property Name="Special_place" Type="Boolean" />
+    <NavigationProperty Name="OWNER" Relationship="ParkingDBModel.FK__OWNER__ID_Pass__5812160E" FromRole="PASS" ToRole="OWNER" />
+  </EntityType>
+  <EntityType Name="PLACE">
+    <Key>
+      <PropertyRef Name="ID_Place" />
+    </Key>
+    <Property Name="ID_Place" Type="Int32" Nullable="false" />
+    <Property Name="Special_place" Type="Boolean" />
+    <Property Name="Occupation" Type="Boolean" />
+    <Property Name="ID_Vehicle" Type="Int32" />
+    <Property Name="ID_Owner" Type="Int32" />
+    <NavigationProperty Name="OWNER" Relationship="ParkingDBModel.FK__OWNER__ID_Place__571DF1D5" FromRole="PLACE" ToRole="OWNER" />
+    <NavigationProperty Name="OWNER1" Relationship="ParkingDBModel.FK__PLACE__ID_Owner__5535A963" FromRole="PLACE" ToRole="OWNER" />
+    <NavigationProperty Name="VEHICLE" Relationship="ParkingDBModel.FK__PLACE__ID_Vehicl__5441852A" FromRole="PLACE" ToRole="VEHICLE" />
+  </EntityType>
+  <EntityType Name="VEHICLE">
+    <Key>
+      <PropertyRef Name="ID_Vehicle" />
+    </Key>
+    <Property Name="ID_Vehicle" Type="Int32" Nullable="false" />
+    <Property Name="Vehicle_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicle_number" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="Color" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+    <Property Name="Special_vehicle" Type="Boolean" />
+    <Property Name="ID_Owner" Type="Int32" />
+    <NavigationProperty Name="OWNER" Relationship="ParkingDBModel.FK__OWNER__ID_Vehicl__5629CD9C" FromRole="VEHICLE" ToRole="OWNER" />
+    <NavigationProperty Name="OWNER1" Relationship="ParkingDBModel.FK__VEHICLE__ID_Owne__534D60F1" FromRole="VEHICLE" ToRole="OWNER" />
+    <NavigationProperty Name="PLACE" Relationship="ParkingDBModel.FK__PLACE__ID_Vehicl__5441852A" FromRole="VEHICLE" ToRole="PLACE" />
+    <Property Name="IMG" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="ParkingDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="OWNER" EntityType="Self.OWNER" />
+    <EntitySet Name="PASS" EntityType="Self.PASS" />
+    <EntitySet Name="PLACE" EntityType="Self.PLACE" />
+    <EntitySet Name="VEHICLE" EntityType="Self.VEHICLE" />
+    <AssociationSet Name="FK__OWNER__ID_Pass__5812160E" Association="ParkingDBModel.FK__OWNER__ID_Pass__5812160E">
+      <End Role="PASS" EntitySet="PASS" />
+      <End Role="OWNER" EntitySet="OWNER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OWNER__ID_Place__571DF1D5" Association="ParkingDBModel.FK__OWNER__ID_Place__571DF1D5">
+      <End Role="PLACE" EntitySet="PLACE" />
+      <End Role="OWNER" EntitySet="OWNER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OWNER__ID_Vehicl__5629CD9C" Association="ParkingDBModel.FK__OWNER__ID_Vehicl__5629CD9C">
+      <End Role="VEHICLE" EntitySet="VEHICLE" />
+      <End Role="OWNER" EntitySet="OWNER" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PLACE__ID_Owner__5535A963" Association="ParkingDBModel.FK__PLACE__ID_Owner__5535A963">
+      <End Role="OWNER" EntitySet="OWNER" />
+      <End Role="PLACE" EntitySet="PLACE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VEHICLE__ID_Owne__534D60F1" Association="ParkingDBModel.FK__VEHICLE__ID_Owne__534D60F1">
+      <End Role="OWNER" EntitySet="OWNER" />
+      <End Role="VEHICLE" EntitySet="VEHICLE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PLACE__ID_Vehicl__5441852A" Association="ParkingDBModel.FK__PLACE__ID_Vehicl__5441852A">
+      <End Role="VEHICLE" EntitySet="VEHICLE" />
+      <End Role="PLACE" EntitySet="PLACE" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK__OWNER__ID_Pass__5812160E">
+    <End Type="ParkingDBModel.PASS" Role="PASS" Multiplicity="0..1" />
+    <End Type="ParkingDBModel.OWNER" Role="OWNER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PASS">
+        <PropertyRef Name="ID_PASS" />
+      </Principal>
+      <Dependent Role="OWNER">
+        <PropertyRef Name="ID_Pass" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OWNER__ID_Place__571DF1D5">
+    <End Type="ParkingDBModel.PLACE" Role="PLACE" Multiplicity="0..1" />
+    <End Type="ParkingDBModel.OWNER" Role="OWNER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PLACE">
+        <PropertyRef Name="ID_Place" />
+      </Principal>
+      <Dependent Role="OWNER">
+        <PropertyRef Name="ID_Place" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OWNER__ID_Vehicl__5629CD9C">
+    <End Type="ParkingDBModel.VEHICLE" Role="VEHICLE" Multiplicity="0..1" />
+    <End Type="ParkingDBModel.OWNER" Role="OWNER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VEHICLE">
+        <PropertyRef Name="ID_Vehicle" />
+      </Principal>
+      <Dependent Role="OWNER">
+        <PropertyRef Name="ID_Vehicle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PLACE__ID_Owner__5535A963">
+    <End Type="ParkingDBModel.OWNER" Role="OWNER" Multiplicity="0..1" />
+    <End Type="ParkingDBModel.PLACE" Role="PLACE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OWNER">
+        <PropertyRef Name="ID_Owner" />
+      </Principal>
+      <Dependent Role="PLACE">
+        <PropertyRef Name="ID_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VEHICLE__ID_Owne__534D60F1">
+    <End Type="ParkingDBModel.OWNER" Role="OWNER" Multiplicity="0..1" />
+    <End Type="ParkingDBModel.VEHICLE" Role="VEHICLE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OWNER">
+        <PropertyRef Name="ID_Owner" />
+      </Principal>
+      <Dependent Role="VEHICLE">
+        <PropertyRef Name="ID_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PLACE__ID_Vehicl__5441852A">
+    <End Type="ParkingDBModel.VEHICLE" Role="VEHICLE" Multiplicity="0..1" />
+    <End Type="ParkingDBModel.PLACE" Role="PLACE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VEHICLE">
+        <PropertyRef Name="ID_Vehicle" />
+      </Principal>
+      <Dependent Role="PLACE">
+        <PropertyRef Name="ID_Vehicle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

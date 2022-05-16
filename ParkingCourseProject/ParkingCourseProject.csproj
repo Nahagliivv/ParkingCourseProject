@@ -96,8 +96,12 @@
     </Compile>
     <Compile Include="Logic\CarViewLogic.cs" />
     <Compile Include="Logic\HashPssword.cs" />
+    <Compile Include="Logic\PlaceViewLogic.cs" />
     <Compile Include="Logic\SaveAndLoadPicture.cs" />
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Views\BuyPassPage.xaml.cs">
+      <DependentUpon>BuyPassPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EnterPage.xaml.cs">
       <DependentUpon>EnterPage.xaml</DependentUpon>
     </Compile>
@@ -119,6 +123,15 @@
     <Compile Include="Views\MyCarVIew.xaml.cs">
       <DependentUpon>MyCarVIew.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ParkingPlaceView.xaml.cs">
+      <DependentUpon>ParkingPlaceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PassView.xaml.cs">
+      <DependentUpon>PassView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Place.xaml.cs">
+      <DependentUpon>Place.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegisterPage.xaml.cs">
       <DependentUpon>RegisterPage.xaml</DependentUpon>
     </Compile>
@@ -127,6 +140,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Styles\MainButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BuyPassPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +172,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MyCarVIew.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ParkingPlaceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PassView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Place.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,10 +226,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
   <ItemGroup>
     <Content Include="DB\ModelParking.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -212,6 +237,13 @@
       <DependentUpon>ModelParking.edmx</DependentUpon>
       <LastGenOutput>ModelParking.cs</LastGenOutput>
     </Content>
+    <Resource Include="Styles\Images\Special.png" />
+    <Resource Include="Styles\Images\STOP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Styles\Images\Account.png" />
     <Resource Include="Styles\Images\BuyPass.png" />
     <Resource Include="Styles\Images\MyCars.png" />

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\App.xaml
-91386765178
+13-485773063
 22031373507
-231020611978
+281365047755
 18-829139853
-Styles\MainButton.xaml;Views\EnterPage.xaml;Views\EnterWindow.xaml;Views\LoginPage.xaml;Views\MainWindow.xaml;Views\MyAccPage.xaml;Views\MyCarsPage.xaml;Views\MyCarVIew.xaml;Views\RegisterPage.xaml;
+Styles\MainButton.xaml;Views\BuyPassPage.xaml;Views\EnterPage.xaml;Views\EnterWindow.xaml;Views\LoginPage.xaml;Views\MainWindow.xaml;Views\MyAccPage.xaml;Views\MyCarsPage.xaml;Views\MyCarVIew.xaml;Views\ParkingPlaceView.xaml;Views\PassView.xaml;Views\Place.xaml;Views\RegisterPage.xaml;
 
 False
 

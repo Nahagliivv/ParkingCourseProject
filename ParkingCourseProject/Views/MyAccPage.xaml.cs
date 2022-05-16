@@ -4,6 +4,7 @@ using ParkingCourseProject.Logic;
 using ParkingCourseProject.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -29,6 +30,7 @@ namespace ParkingCourseProject.Views
         MainWindow mainWindow;
         byte[] editImg;
         byte[] saveImg;
+        public ObservableCollection<PASS> PassesList { get; set; }
         public MyAccPage( MainWindow mainWindow)
         {
             InitializeComponent();
@@ -37,6 +39,11 @@ namespace ParkingCourseProject.Views
             TextBoxName.Text = CurrentUser.UserRef.Full_name;
             TextBoxAddres.Text = CurrentUser.UserRef.Adress;
             TextBoxPhoneNumber.Text = CurrentUser.UserRef.Tel_number;
+            LabelBalance.Content = CurrentUser.UserRef.Debt;
+            DataContext = this;
+            PassesList = new ObservableCollection<PASS>();
+            InitTakedPlaces();
+            InitPasses();
         }
         //Нажате на картинку
         private void EllipsePicture_MouseDown(object sender, MouseButtonEventArgs e)
@@ -91,6 +98,28 @@ namespace ParkingCourseProject.Views
                 {
                     ErrorMessage.Content = "Неверный старый пароль";
                     return;
+                }
+            }
+        }
+        void InitPasses()
+        {
+            using (var db = new ParkingDBEntities())
+            {
+                var passes = db.PASS.Where(x => x.ID_Owner == CurrentUser.UserRef.ID_Owner);
+                foreach(var x in passes)
+                {
+                    PassesList.Add(x);
+                }
+            }
+        }
+        void InitTakedPlaces()
+        {
+            using (var db = new ParkingDBEntities())
+            { 
+                var places = db.PLACE.Where(x => x.ID_Owner == CurrentUser.UserRef.ID_Owner);
+                foreach (var x in places)
+                {
+                    LabelTakedPlaces.Content += x.ID_Place + "; ";
                 }
             }
         }

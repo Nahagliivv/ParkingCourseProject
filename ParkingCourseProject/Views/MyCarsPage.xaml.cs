@@ -118,12 +118,16 @@ namespace ParkingCourseProject.Views
             if (SelectedCar == null) { return; }
             using (var db = new ParkingDBEntities())
             {
-                var linq = db.VEHICLE.FirstOrDefault(x=>x.ID_Vehicle == SelectedCar.ID_Vehicle);
-                if(linq==null) { return;}
-                db.VEHICLE.Remove(linq);
-                CarsViews.Remove(SelectedCar);
-                db.SaveChanges();
-                MessageBox.Show("Транспорт удалён");
+                try
+                {
+                    var linq = db.VEHICLE.FirstOrDefault(x => x.ID_Vehicle == SelectedCar.ID_Vehicle);
+                    if (linq == null) { return; }
+                    db.VEHICLE.Remove(linq);
+                    db.SaveChanges();
+                    CarsViews.Remove(SelectedCar);
+                    MessageBox.Show("Транспорт удалён");
+                }
+                catch { MessageBox.Show("Нельзя удалить авто из списка пока оно привязано к стоянке"); return; }
             }
         }
     }

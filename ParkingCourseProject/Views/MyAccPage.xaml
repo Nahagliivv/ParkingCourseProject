@@ -81,5 +81,17 @@
             </Button.Resources>
         </Button>
         <Label Content="" Name="ErrorMessage" HorizontalAlignment="Left" Foreground="Red" Margin="58,687,0,0" VerticalAlignment="Top" Width="380" Height="47"/>
+        <Label Foreground="#c6c6c6" Content="Забронированные места:" HorizontalAlignment="Right" Margin="0,320,45,0" VerticalAlignment="Top" FontSize="56"/>
+        <Label x:Name="LabelTakedPlaces" Foreground="#c6c6c6" Content="" HorizontalAlignment="Right" Margin="0,396,45,0" VerticalAlignment="Top" FontSize="56"/>
+        <Label Foreground="#c6c6c6" Content="Баланс(руб.):" HorizontalAlignment="Right" Margin="0,160,44,0" VerticalAlignment="Top" FontSize="56"/>
+        <Label x:Name="LabelBalance" Foreground="#c6c6c6" Content="" HorizontalAlignment="Right" Margin="0,220,45,0" VerticalAlignment="Top" FontSize="56"/>
+        <Label Foreground="#c6c6c6" Content="Абонементы:" HorizontalAlignment="Right" Margin="0,475,45,0" VerticalAlignment="Top" FontSize="56"/>
+        <ListBox Margin="0,557,54,33" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5" Width="503" Background="#808080" ItemsSource="{Binding PassesList}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <local:PassView/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Page>

@@ -11,15 +11,13 @@
     <Property Name="Debt" Type="money" />
     <Property Name="Password" Type="nvarchar" MaxLength="100" />
     <Property Name="IMG" Type="varbinary(max)" />
-    <Property Name="ID_Vehicle" Type="int" />
-    <Property Name="ID_Place" Type="int" />
-    <Property Name="ID_Pass" Type="int" />
   </EntityType>
   <EntityType Name="PASS">
     <Key>
       <PropertyRef Name="ID_PASS" />
     </Key>
-    <Property Name="ID_PASS" Type="int" Nullable="false" />
+    <Property Name="ID_PASS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Owner" Type="int" />
     <Property Name="Start_date" Type="date" />
     <Property Name="End_date" Type="date" />
     <Property Name="Special_place" Type="bit" />
@@ -33,80 +31,21 @@
     <Property Name="Occupation" Type="bit" />
     <Property Name="ID_Vehicle" Type="int" />
     <Property Name="ID_Owner" Type="int" />
+    <Property Name="ID_PASS" Type="int" />
   </EntityType>
   <EntityType Name="VEHICLE">
     <Key>
       <PropertyRef Name="ID_Vehicle" />
     </Key>
     <Property Name="ID_Vehicle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Owner" Type="int" />
     <Property Name="Vehicle_name" Type="nvarchar" MaxLength="50" />
     <Property Name="Vehicle_number" Type="nvarchar" MaxLength="14" />
     <Property Name="Color" Type="nvarchar" MaxLength="14" />
     <Property Name="IMG" Type="varbinary(max)" />
     <Property Name="Special_vehicle" Type="bit" />
-    <Property Name="ID_Owner" Type="int" />
   </EntityType>
-  <Association Name="FK__OWNER__ID_Pass__5441852A">
-    <End Role="PASS" Type="Self.PASS" Multiplicity="0..1" />
-    <End Role="OWNER" Type="Self.OWNER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PASS">
-        <PropertyRef Name="ID_PASS" />
-      </Principal>
-      <Dependent Role="OWNER">
-        <PropertyRef Name="ID_Pass" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__OWNER__ID_Place__534D60F1">
-    <End Role="PLACE" Type="Self.PLACE" Multiplicity="0..1" />
-    <End Role="OWNER" Type="Self.OWNER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PLACE">
-        <PropertyRef Name="ID_Place" />
-      </Principal>
-      <Dependent Role="OWNER">
-        <PropertyRef Name="ID_Place" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__OWNER__ID_Vehicl__52593CB8">
-    <End Role="VEHICLE" Type="Self.VEHICLE" Multiplicity="0..1" />
-    <End Role="OWNER" Type="Self.OWNER" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="VEHICLE">
-        <PropertyRef Name="ID_Vehicle" />
-      </Principal>
-      <Dependent Role="OWNER">
-        <PropertyRef Name="ID_Vehicle" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__PLACE__ID_Owner__5165187F">
-    <End Role="OWNER" Type="Self.OWNER" Multiplicity="0..1" />
-    <End Role="PLACE" Type="Self.PLACE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="OWNER">
-        <PropertyRef Name="ID_Owner" />
-      </Principal>
-      <Dependent Role="PLACE">
-        <PropertyRef Name="ID_Owner" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__PLACE__ID_Vehicl__5070F446">
-    <End Role="VEHICLE" Type="Self.VEHICLE" Multiplicity="0..1" />
-    <End Role="PLACE" Type="Self.PLACE" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="VEHICLE">
-        <PropertyRef Name="ID_Vehicle" />
-      </Principal>
-      <Dependent Role="PLACE">
-        <PropertyRef Name="ID_Vehicle" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__VEHICLE__ID_Owne__4F7CD00D">
+  <Association Name="fk_ownerfr1">
     <End Role="OWNER" Type="Self.OWNER" Multiplicity="0..1" />
     <End Role="VEHICLE" Type="Self.VEHICLE" Multiplicity="*" />
     <ReferentialConstraint>
@@ -118,34 +57,78 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="fk_ownerfr2">
+    <End Role="OWNER" Type="Self.OWNER" Multiplicity="0..1" />
+    <End Role="PASS" Type="Self.PASS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OWNER">
+        <PropertyRef Name="ID_Owner" />
+      </Principal>
+      <Dependent Role="PASS">
+        <PropertyRef Name="ID_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ownerfr3">
+    <End Role="VEHICLE" Type="Self.VEHICLE" Multiplicity="0..1" />
+    <End Role="PLACE" Type="Self.PLACE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VEHICLE">
+        <PropertyRef Name="ID_Vehicle" />
+      </Principal>
+      <Dependent Role="PLACE">
+        <PropertyRef Name="ID_Vehicle" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ownerfr4">
+    <End Role="OWNER" Type="Self.OWNER" Multiplicity="0..1" />
+    <End Role="PLACE" Type="Self.PLACE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OWNER">
+        <PropertyRef Name="ID_Owner" />
+      </Principal>
+      <Dependent Role="PLACE">
+        <PropertyRef Name="ID_Owner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ownerfr6">
+    <End Role="PASS" Type="Self.PASS" Multiplicity="0..1" />
+    <End Role="PLACE" Type="Self.PLACE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PASS">
+        <PropertyRef Name="ID_PASS" />
+      </Principal>
+      <Dependent Role="PLACE">
+        <PropertyRef Name="ID_PASS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Хранилище ParkingDBModelContainer">
     <EntitySet Name="OWNER" EntityType="Self.OWNER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PASS" EntityType="Self.PASS" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PLACE" EntityType="Self.PLACE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VEHICLE" EntityType="Self.VEHICLE" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__OWNER__ID_Pass__5441852A" Association="Self.FK__OWNER__ID_Pass__5441852A">
+    <AssociationSet Name="fk_ownerfr1" Association="Self.fk_ownerfr1">
+      <End Role="OWNER" EntitySet="OWNER" />
+      <End Role="VEHICLE" EntitySet="VEHICLE" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ownerfr2" Association="Self.fk_ownerfr2">
+      <End Role="OWNER" EntitySet="OWNER" />
       <End Role="PASS" EntitySet="PASS" />
-      <End Role="OWNER" EntitySet="OWNER" />
     </AssociationSet>
-    <AssociationSet Name="FK__OWNER__ID_Place__534D60F1" Association="Self.FK__OWNER__ID_Place__534D60F1">
-      <End Role="PLACE" EntitySet="PLACE" />
-      <End Role="OWNER" EntitySet="OWNER" />
-    </AssociationSet>
-    <AssociationSet Name="FK__OWNER__ID_Vehicl__52593CB8" Association="Self.FK__OWNER__ID_Vehicl__52593CB8">
-      <End Role="VEHICLE" EntitySet="VEHICLE" />
-      <End Role="OWNER" EntitySet="OWNER" />
-    </AssociationSet>
-    <AssociationSet Name="FK__PLACE__ID_Owner__5165187F" Association="Self.FK__PLACE__ID_Owner__5165187F">
-      <End Role="OWNER" EntitySet="OWNER" />
-      <End Role="PLACE" EntitySet="PLACE" />
-    </AssociationSet>
-    <AssociationSet Name="FK__PLACE__ID_Vehicl__5070F446" Association="Self.FK__PLACE__ID_Vehicl__5070F446">
+    <AssociationSet Name="fk_ownerfr3" Association="Self.fk_ownerfr3">
       <End Role="VEHICLE" EntitySet="VEHICLE" />
       <End Role="PLACE" EntitySet="PLACE" />
     </AssociationSet>
-    <AssociationSet Name="FK__VEHICLE__ID_Owne__4F7CD00D" Association="Self.FK__VEHICLE__ID_Owne__4F7CD00D">
+    <AssociationSet Name="fk_ownerfr4" Association="Self.fk_ownerfr4">
       <End Role="OWNER" EntitySet="OWNER" />
-      <End Role="VEHICLE" EntitySet="VEHICLE" />
+      <End Role="PLACE" EntitySet="PLACE" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ownerfr6" Association="Self.fk_ownerfr6">
+      <End Role="PASS" EntitySet="PASS" />
+      <End Role="PLACE" EntitySet="PLACE" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

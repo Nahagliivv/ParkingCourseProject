@@ -37,3 +37,11 @@ C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\
 C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\MyCarVIew.g.cs
 C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\MyCarVIew.baml
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\BuyPassPage.g.cs
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\BuyPassPage.baml
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\ParkingPlaceView.g.cs
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\Place.g.cs
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\ParkingPlaceView.baml
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\Place.baml
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\PassView.g.cs
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\PassView.baml

@@ -17,8 +17,9 @@ namespace ParkingCourseProject.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OWNER()
         {
-            this.PLACE1 = new HashSet<PLACE>();
-            this.VEHICLE1 = new HashSet<VEHICLE>();
+            this.VEHICLE = new HashSet<VEHICLE>();
+            this.PASS = new HashSet<PASS>();
+            this.PLACE = new HashSet<PLACE>();
         }
     
         public int ID_Owner { get; set; }
@@ -27,17 +28,13 @@ namespace ParkingCourseProject.DB
         public string Tel_number { get; set; }
         public Nullable<decimal> Debt { get; set; }
         public string Password { get; set; }
-        public Nullable<int> ID_Vehicle { get; set; }
-        public Nullable<int> ID_Place { get; set; }
-        public Nullable<int> ID_Pass { get; set; }
         public byte[] IMG { get; set; }
     
-        public virtual PASS PASS { get; set; }
-        public virtual PLACE PLACE { get; set; }
-        public virtual VEHICLE VEHICLE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PLACE> PLACE1 { get; set; }
+        public virtual ICollection<VEHICLE> VEHICLE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VEHICLE> VEHICLE1 { get; set; }
+        public virtual ICollection<PASS> PASS { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PLACE> PLACE { get; set; }
     }
 }

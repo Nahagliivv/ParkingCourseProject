@@ -4,17 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cc9ec929d4f9422abda57d3454e07725" Name="Diagram1">
-        <EntityTypeShape EntityType="ParkingDBModel.OWNER" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingDBModel.PASS" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingDBModel.PLACE" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ParkingDBModel.VEHICLE" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="ParkingDBModel.FK__OWNER__ID_Pass__5812160E" />
-        <AssociationConnector Association="ParkingDBModel.FK__OWNER__ID_Place__571DF1D5" />
-        <AssociationConnector Association="ParkingDBModel.FK__OWNER__ID_Vehicl__5629CD9C" />
-        <AssociationConnector Association="ParkingDBModel.FK__PLACE__ID_Owner__5535A963" />
-        <AssociationConnector Association="ParkingDBModel.FK__VEHICLE__ID_Owne__534D60F1" />
-        <AssociationConnector Association="ParkingDBModel.FK__PLACE__ID_Vehicl__5441852A" />
+      <Diagram DiagramId="23922d5ddb25479a800b70a3aee83317" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="ParkingDBModel.OWNER" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.PASS" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.PLACE" Width="1.5" PointX="8.25" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ParkingDBModel.VEHICLE" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="ParkingDBModel.fk_ownerfr1" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.fk_ownerfr2" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.fk_ownerfr4" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.fk_ownerfr3" ManuallyRouted="false" />
+        <AssociationConnector Association="ParkingDBModel.fk_ownerfr6" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,45 @@
+﻿<Page x:Class="ParkingCourseProject.Views.BuyPassPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ParkingCourseProject.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280" Background="#808080"
+      Title="BuyPassPage">
+
+    <Grid>
+        <Label Content="Покупка абонемента" Foreground="White" HorizontalAlignment="Center" Margin="0,71,0,0" VerticalAlignment="Top" FontSize="56"/>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0">
+            <DatePicker x:Name="TextBoxBeginDate" HorizontalAlignment="Left" Height="40"  VerticalAlignment="Top" Width="380" Margin="0,255,0,0"  FontSize="20" IsEnabled="False" >
+            </DatePicker>
+            <DatePicker x:Name="TextBoxEndDate" HorizontalAlignment="Left" Height="40"  VerticalAlignment="Top" Width="380" Margin="0,326,0,0"  FontSize="20" SelectedDateChanged="TextBoxEndDate_SelectedDateChanged">
+
+            </DatePicker>
+            <Button Content="Приобрести"  HorizontalAlignment="Center"  VerticalAlignment="Top"  Width="380" Height="46" FontSize="28" Padding="0" Margin="0,515,0,0" Click="Button_Click"   >
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Style>
+                    <StaticResource ResourceKey="MainButton"/>
+                </Button.Style>
+            </Button>
+            <Label Content="" x:Name="ErrorMessage" HorizontalAlignment="Center" Foreground="Red" Margin="0,468,0,0" VerticalAlignment="Top" Width="380" Height="47"/>
+            <TextBox x:Name="TextBoxPrice" HorizontalAlignment="Center" Height="40" TextWrapping="Wrap"  VerticalAlignment="Top" Width="380" Margin="0,428,0,0"  FontSize="20" IsReadOnly="True" >
+                <TextBox.Template>
+                    <ControlTemplate>
+                        <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
+                            <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
+                        </Border>
+                    </ControlTemplate>
+                </TextBox.Template>
+            </TextBox>
+            <Label Foreground="White" Content="Начало действия" HorizontalAlignment="Left" Margin="0,221,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Foreground="White" Content="Конец действия" HorizontalAlignment="Left" Margin="0,294,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <CheckBox RenderSize="100,100" Name="CheckBoxIsSpecial"  Foreground="White" Content="Специальный автомобиль?" HorizontalAlignment="Left" Margin="10,372,0,0" VerticalAlignment="Top" FontSize="16" Checked="CheckBoxIsSpecial_Checked" Unchecked="CheckBoxIsSpecial_Checked"/>
+            <Label Foreground="White" Content="Цена(руб.)" HorizontalAlignment="Left" Margin="0,397,0,0" VerticalAlignment="Top" FontSize="16"/>
+        </Grid>
+    </Grid>
+</Page>

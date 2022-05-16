@@ -17,15 +17,17 @@ namespace ParkingCourseProject.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PASS()
         {
-            this.OWNER = new HashSet<OWNER>();
+            this.PLACE = new HashSet<PLACE>();
         }
     
         public int ID_PASS { get; set; }
+        public Nullable<int> ID_Owner { get; set; }
         public Nullable<System.DateTime> Start_date { get; set; }
         public Nullable<System.DateTime> End_date { get; set; }
         public Nullable<bool> Special_place { get; set; }
     
+        public virtual OWNER OWNER { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OWNER> OWNER { get; set; }
+        public virtual ICollection<PLACE> PLACE { get; set; }
     }
 }

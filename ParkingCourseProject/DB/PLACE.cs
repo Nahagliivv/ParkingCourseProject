@@ -14,21 +14,15 @@ namespace ParkingCourseProject.DB
     
     public partial class PLACE
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PLACE()
-        {
-            this.OWNER = new HashSet<OWNER>();
-        }
-    
         public int ID_Place { get; set; }
         public Nullable<bool> Special_place { get; set; }
         public Nullable<bool> Occupation { get; set; }
         public Nullable<int> ID_Vehicle { get; set; }
         public Nullable<int> ID_Owner { get; set; }
+        public Nullable<int> ID_PASS { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OWNER> OWNER { get; set; }
-        public virtual OWNER OWNER1 { get; set; }
+        public virtual OWNER OWNER { get; set; }
         public virtual VEHICLE VEHICLE { get; set; }
+        public virtual PASS PASS { get; set; }
     }
 }

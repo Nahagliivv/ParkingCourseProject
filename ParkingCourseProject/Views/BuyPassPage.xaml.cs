@@ -41,6 +41,7 @@ namespace ParkingCourseProject.Views
         //кнопка приобрести
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            try { 
             if(TextBoxEndDate.Text == "") { ErrorMessage.Content = "Не выбрана дата окончания"; return; }
             endDate = DateTime.Parse(TextBoxEndDate.Text);
             if(endDate< DateTime.Today)
@@ -49,60 +50,83 @@ namespace ParkingCourseProject.Views
                 return;
             }
             ErrorMessage.Content = "";
-            using (var db = new ParkingDBEntities())
+                using (var db = new ParkingDBEntities())
+                {
+                    PASS newPass = new PASS() { ID_Owner = CurrentUser.UserRef.ID_Owner, End_date = endDate, Special_place = CheckBoxIsSpecial.IsChecked, Start_date = DateTime.Today };
+                    var curUser = db.OWNER.FirstOrDefault(x => x.ID_Owner == CurrentUser.UserRef.ID_Owner);
+                    if (curUser.Debt < (decimal)Price) { ErrorMessage.Content = "не хватает средств на балансе"; return; }
+                    curUser.Debt = curUser.Debt - (decimal)Price;
+                    db.PASS.Add(newPass);
+                    db.SaveChanges();
+                    CurrentUser.UserRef = curUser;
+                    MessageBox.Show("Абонемент успешно приобретён");
+                    mwnd.Mainframe.Content = new BuyPassPage(mwnd);
+                }
+            }
+            catch
             {
-                PASS newPass = new PASS() { ID_Owner = CurrentUser.UserRef.ID_Owner, End_date = endDate, Special_place = CheckBoxIsSpecial.IsChecked, Start_date = DateTime.Today };
-                var curUser  = db.OWNER.FirstOrDefault(x=>x.ID_Owner==CurrentUser.UserRef.ID_Owner);
-                if (curUser.Debt < (decimal)Price) { ErrorMessage.Content = "не хватает средств на балансе"; return; }
-                curUser.Debt = curUser.Debt - (decimal)Price;
-                db.PASS.Add(newPass);
-                db.SaveChanges();
-                CurrentUser.UserRef = curUser;
-                MessageBox.Show("Абонемент успешно приобретён");
-                mwnd.Mainframe.Content = new BuyPassPage(mwnd);
+                MessageBox.Show("Введены некорректные данные!"); return;
             }
             }
 
 
         private void UpdatePrice()
         {
-            Price = 0;
-            discount = 1;
-            double DateDifInSecond = endDate.Subtract(DateTime.Today).TotalDays;
-            Days = (int)(Math.Ceiling(DateDifInSecond));
-            for(int i = 1; i <= Days; i++)
+            try
             {
-                Price +=BeginPrice * discount;
-                if (discount > 0.4f)
+                Price = 0;
+                discount = 1;
+                double DateDifInSecond = endDate.Subtract(DateTime.Today).TotalDays;
+                Days = (int)(Math.Ceiling(DateDifInSecond));
+                for (int i = 1; i <= Days; i++)
                 {
-                    discount -= 0.05; 
-                }   
+                    Price += BeginPrice * discount;
+                    if (discount > 0.4f)
+                    {
+                        discount -= 0.05;
+                    }
+                }
+                if (CheckBoxIsSpecial.IsChecked == true) { Price = Price * 0.8; }
+                TextBoxPrice.Text = Price.ToString();
             }
-            if (CheckBoxIsSpecial.IsChecked == true) { Price = Price * 0.8; }
-            TextBoxPrice.Text = Price.ToString();
+            catch { MessageBox.Show("Ошибка при расчете цены"); return; }
         }
 
         private void TextBoxEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (TextBoxEndDate.Text == "") return;
-            endDate = DateTime.Parse(TextBoxEndDate.Text);
-            if (endDate < DateTime.Now)
+            try
             {
-                ErrorMessage.Content = "Дата окончания действия не может быть меньше даты начала ";
-                return;
+                if (TextBoxEndDate.Text == "") return;
+                endDate = DateTime.Parse(TextBoxEndDate.Text);
+                if (endDate < DateTime.Now)
+                {
+                    ErrorMessage.Content = "Дата окончания действия не может быть меньше даты начала ";
+                    return;
+                }
+                UpdatePrice();
             }
-            UpdatePrice();
+            catch
+            {
+                MessageBox.Show("Ошибка при выборе даты"); return;
+            }
         }
         private void CheckBoxIsSpecial_Checked(object sender, RoutedEventArgs e)
         {
-            if (TextBoxEndDate.Text == "")return;
-            endDate = DateTime.Parse(TextBoxEndDate.Text);
-            if (endDate < DateTime.Now)
+            try
             {
-                ErrorMessage.Content = "Дата окончания действия не может быть меньше даты начала ";
-                return;
+                if (TextBoxEndDate.Text == "") return;
+                endDate = DateTime.Parse(TextBoxEndDate.Text);
+                if (endDate < DateTime.Now)
+                {
+                    ErrorMessage.Content = "Дата окончания действия не может быть меньше даты начала ";
+                    return;
+                }
+                UpdatePrice();
             }
-            UpdatePrice();
+            catch
+            {
+                MessageBox.Show("Ошибка при выборе даты"); return;
+            }
         }
     }
 }

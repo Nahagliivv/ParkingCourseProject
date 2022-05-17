@@ -14,6 +14,7 @@
     <NavigationProperty Name="VEHICLE" Relationship="Self.fk_ownerfr1" FromRole="OWNER" ToRole="VEHICLE" />
     <NavigationProperty Name="PASS" Relationship="Self.fk_ownerfr2" FromRole="OWNER" ToRole="PASS" />
     <NavigationProperty Name="PLACE" Relationship="Self.fk_ownerfr4" FromRole="OWNER" ToRole="PLACE" />
+    <Property Name="IsAdmin" Type="Boolean" />
   </EntityType>
   <EntityType Name="PASS">
     <Key>

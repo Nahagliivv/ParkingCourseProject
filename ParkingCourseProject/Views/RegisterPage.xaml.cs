@@ -52,28 +52,35 @@ namespace ParkingCourseProject.Views
         //попытка регистрации
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            if (!expName.IsMatch(TextBoxName.Text)) { TextBoxErrorMessage.Content = "Неверный формат ФИО"; return; }
-            if (TextBoxAddr.Text.Length < 1) { TextBoxErrorMessage.Content = "Поле адреса не может быть пустым"; return; }
-            if (!expPhoneNumber.IsMatch(TextBoxPhoneNumber.Text)) { TextBoxErrorMessage.Content = "Неверный формат номера телефона"; return; }
-            using (var db = new ParkingDBEntities())
+            try
             {
-                foreach (var x in db.OWNER)
+                if (!expName.IsMatch(TextBoxName.Text)) { TextBoxErrorMessage.Content = "Неверный формат ФИО"; return; }
+                if (TextBoxAddr.Text.Length < 1) { TextBoxErrorMessage.Content = "Поле адреса не может быть пустым"; return; }
+                if (!expPhoneNumber.IsMatch(TextBoxPhoneNumber.Text)) { TextBoxErrorMessage.Content = "Неверный формат номера телефона"; return; }
+                using (var db = new ParkingDBEntities())
                 {
-                    if (x.Tel_number == TextBoxPhoneNumber.Text)
+                    foreach (var x in db.OWNER)
                     {
-                        TextBoxErrorMessage.Content = "Пользователь с таким номером телефона уже зарегистрирован"; return;
+                        if (x.Tel_number == TextBoxPhoneNumber.Text)
+                        {
+                            TextBoxErrorMessage.Content = "Пользователь с таким номером телефона уже зарегистрирован"; return;
+                        }
                     }
                 }
-            }
                 if (!expPassword.IsMatch(TextBoxPassword.Password)) { TextBoxErrorMessage.Content = "В пароле должны быть: цифра, буквы нижнего и верхнего \nрегистра, длина от 8 до 16 символов "; return; }
-            if (TextBoxPassword.Password != TextBoxRepeatPassword.Password) { TextBoxErrorMessage.Content = "Пароли не совпадают"; return; }
-            using(var db = new ParkingDBEntities())
-            {
-                db.OWNER.Add(new OWNER() { Tel_number = TextBoxPhoneNumber.Text, Adress = TextBoxAddr.Text, Full_name = TextBoxName.Text, Password = HashPssword.Hash(TextBoxPassword.Password), Debt = 0, IMG = imgData }); 
-                db.SaveChanges();
+                if (TextBoxPassword.Password != TextBoxRepeatPassword.Password) { TextBoxErrorMessage.Content = "Пароли не совпадают"; return; }
+                using (var db = new ParkingDBEntities())
+                {
+                    db.OWNER.Add(new OWNER() { Tel_number = TextBoxPhoneNumber.Text, Adress = TextBoxAddr.Text, Full_name = TextBoxName.Text, Password = HashPssword.Hash(TextBoxPassword.Password), Debt = 0, IMG = imgData });
+                    db.SaveChanges();
+                }
+                mainwindow.Mainframe.Content = new EnterPage(mainwindow);
+                MessageBox.Show("Регистрация успешно завершена");
             }
-            mainwindow.Mainframe.Content = new EnterPage(mainwindow);
-            MessageBox.Show("Регистрация успешно завершена");
+            catch
+            {
+                MessageBox.Show("Ошибка попытки регистрации"); return;
+            }
         }
 
         private void EllipsePicture_MouseDown(object sender, MouseButtonEventArgs e)

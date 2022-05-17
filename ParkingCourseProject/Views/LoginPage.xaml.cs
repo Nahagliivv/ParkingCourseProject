@@ -38,27 +38,42 @@ namespace ParkingCourseProject.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using(var db = new ParkingDBEntities())
+            try {
+                using (var db = new ParkingDBEntities())
+                {
+                    int linq = db.OWNER.Count(q => q.Tel_number == TextBoxPhoneNumber.Text);
+                    if (linq == 0)
+                    {
+                        ErrorMessage.Content = "Зарегистрированного пользователя с таким номером телефона нет";
+                        return;
+                    }
+                    var user = db.OWNER.FirstOrDefault(q => q.Tel_number == TextBoxPhoneNumber.Text);
+                    if (HashPssword.VerifyHashedPassword(user.Password, TextBoxPassword.Password))
+                    {
+
+                        CurrentUser.UserRef = user;
+                        if (CurrentUser.UserRef.IsAdmin == true)
+                        {
+                            mainwindow.Mainframe.Content = new AdminPage(mainwindow);
+                        }
+                        else
+                        {
+                            App.Current.MainWindow.Hide();
+                            App.Current.MainWindow = new MainWindow();
+                            App.Current.MainWindow.Show();
+                        }
+                    }
+                    else
+                    {
+                        ErrorMessage.Content = "Неверный пароль";
+                        return;
+                    }
+                }
+                
+            }
+            catch
             {
-                int linq = db.OWNER.Count(q => q.Tel_number == TextBoxPhoneNumber.Text);
-                if (linq == 0)
-                {
-                    ErrorMessage.Content = "Зарегистрированного пользователя с таким номером телефона нет";
-                    return;
-                }
-                var user = db.OWNER.FirstOrDefault(q=>q.Tel_number == TextBoxPhoneNumber.Text);
-                if (HashPssword.VerifyHashedPassword(user.Password, TextBoxPassword.Password))
-                {
-                    CurrentUser.UserRef = user;
-                    App.Current.MainWindow.Hide();
-                    App.Current.MainWindow = new MainWindow();
-                    App.Current.MainWindow.Show();
-                }
-                else
-                {
-                    ErrorMessage.Content = "Неверный пароль";
-                    return;
-                }
+                MessageBox.Show("Ошибка входа"); return;
             }
         }
     }

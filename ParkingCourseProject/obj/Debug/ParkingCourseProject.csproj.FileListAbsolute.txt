@@ -45,3 +45,5 @@ C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\
 C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\Place.baml
 C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\PassView.g.cs
 C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\PassView.baml
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\AdminPage.g.cs
+C:\Users\Mark\Desktop\ParkingCourseProject\ParkingCourseProject\obj\Debug\Views\AdminPage.baml

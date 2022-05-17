@@ -99,6 +99,9 @@
     <Compile Include="Logic\PlaceViewLogic.cs" />
     <Compile Include="Logic\SaveAndLoadPicture.cs" />
     <Compile Include="Models\CurrentUser.cs" />
+    <Compile Include="Views\AdminPage.xaml.cs">
+      <DependentUpon>AdminPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BuyPassPage.xaml.cs">
       <DependentUpon>BuyPassPage.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Styles\MainButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

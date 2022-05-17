@@ -48,38 +48,52 @@ namespace ParkingCourseProject.Views
         //загрузка картинки в кругалёк
         void InitImg()
         {
-            CarImage.ImageSource = new BitmapImage(new Uri(defaultCarImg));
-            img = System.Windows.Application.GetResourceStream(new Uri(defaultCarImg));
-            editImg = SaveAndLoadPicture.ReadFully(img.Stream);
-            saveImg = SaveAndLoadPicture.ReadFully(img.Stream);
+            try
+            {
+                CarImage.ImageSource = new BitmapImage(new Uri(defaultCarImg));
+                img = System.Windows.Application.GetResourceStream(new Uri(defaultCarImg));
+                editImg = SaveAndLoadPicture.ReadFully(img.Stream);
+                saveImg = SaveAndLoadPicture.ReadFully(img.Stream);
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка инициализации изображения"); return;
+            }
         }
         //добавление тачки
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            bool isSpecial;
-            if (!carNumber.IsMatch(TextBoxNumber.Text)) { ErrorMessage.Content = "Неверный формат номера авто(1111АА-1)";  return; }
-            using (var db = new ParkingDBEntities())
-            { 
-                int countOfCurrVeh = db.VEHICLE.Count(x=>x.Vehicle_number == TextBoxNumber.Text);
-                if (countOfCurrVeh != 0) { ErrorMessage.Content = "Транспорт с таким номером уже зарегистрирован"; return; }
-            }
-                if (TextBoxIsSpecial.Text.ToLower()!="да" && TextBoxIsSpecial.Text.ToLower() != "нет") { ErrorMessage.Content = "Неверно заполнено поле Специальный автомобиль"; return; }
-            if (TextBoxIsSpecial.Text.ToLower() =="да") { isSpecial = true; } else { isSpecial = false; }
-            if (TextBoxColor.Text == "" || TextBoxBrand.Text == "") { ErrorMessage.Content = "Пустые поля не должны быть"; return; }
-            using(var db  = new ParkingDBEntities())
+            try
             {
-                var newCar = new DB.VEHICLE();
-                newCar.ID_Owner = CurrentUser.UserRef.ID_Owner;
-                newCar.Color = TextBoxColor.Text;
-                newCar.Vehicle_number = TextBoxNumber.Text;
-                newCar.Special_vehicle = isSpecial;
-                newCar.Vehicle_name = TextBoxBrand.Text;
-                newCar.IMG = editImg;
-                db.VEHICLE.Add(newCar);
-                CarsViews.Add(new CarViewLogic(newCar));
-                db.SaveChanges();
-                MessageBox.Show("Автомобиль успешно зарегистрирован");
-                mwnd.Mainframe.Content = new MyCarsPage(mwnd);
+                bool isSpecial;
+                if (!carNumber.IsMatch(TextBoxNumber.Text)) { ErrorMessage.Content = "Неверный формат номера авто(1111АА-1)"; return; }
+                using (var db = new ParkingDBEntities())
+                {
+                    int countOfCurrVeh = db.VEHICLE.Count(x => x.Vehicle_number == TextBoxNumber.Text);
+                    if (countOfCurrVeh != 0) { ErrorMessage.Content = "Транспорт с таким номером уже зарегистрирован"; return; }
+                }
+                if (TextBoxIsSpecial.Text.ToLower() != "да" && TextBoxIsSpecial.Text.ToLower() != "нет") { ErrorMessage.Content = "Неверно заполнено поле Специальный автомобиль"; return; }
+                if (TextBoxIsSpecial.Text.ToLower() == "да") { isSpecial = true; } else { isSpecial = false; }
+                if (TextBoxColor.Text == "" || TextBoxBrand.Text == "") { ErrorMessage.Content = "Пустые поля не должны быть"; return; }
+                using (var db = new ParkingDBEntities())
+                {
+                    var newCar = new DB.VEHICLE();
+                    newCar.ID_Owner = CurrentUser.UserRef.ID_Owner;
+                    newCar.Color = TextBoxColor.Text;
+                    newCar.Vehicle_number = TextBoxNumber.Text;
+                    newCar.Special_vehicle = isSpecial;
+                    newCar.Vehicle_name = TextBoxBrand.Text;
+                    newCar.IMG = editImg;
+                    db.VEHICLE.Add(newCar);
+                    CarsViews.Add(new CarViewLogic(newCar));
+                    db.SaveChanges();
+                    MessageBox.Show("Автомобиль успешно зарегистрирован");
+                    mwnd.Mainframe.Content = new MyCarsPage(mwnd);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка добавления авто"); return;
             }
         }
         //Выбор картинки при нажатии на картинку0_о

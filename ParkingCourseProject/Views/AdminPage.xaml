@@ -1,0 +1,73 @@
+﻿<Page x:Class="ParkingCourseProject.Views.AdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ParkingCourseProject.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="AdminPage">
+
+    <Grid Background="#808080">
+        <Button Content="Выход" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="40" Width="115" Click="Button_Click"  Style="{StaticResource MainButton}" Margin="10,0,0,10"/>
+        <ListView Margin="68,149,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding UsersList, Mode=TwoWay}" Height="471" SelectedItem="{Binding SelectedOwner}" Width="692">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  DisplayMemberBinding="{Binding Path= ID_Owner}" Width="40">Id</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Full_name}" Width="160">ФИО</GridViewColumn>
+                    <GridViewColumn  DisplayMemberBinding="{Binding Path=Adress}" Width="210">Адрес</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tel_number}" Width="120">Номер телефона</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Debt}" Width="210">Баланс</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="115" Click="Button_Click_1" Style="{StaticResource MainButton}" Margin="645,104,0,0"/>
+        <TextBox x:Name="TextBoxSearch"  HorizontalAlignment="Left" Height="40"  VerticalAlignment="Top" Width="572" Margin="68,104,0,0"  FontSize="20">
+            <TextBox.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
+                    </Border>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+        <TextBox x:Name="TextBoxAddMoney"  HorizontalAlignment="Left" Height="40"  VerticalAlignment="Top" Width="112" Margin="557,625,0,0"  FontSize="20">
+            <TextBox.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
+                    </Border>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+        <Button Content="+" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="40" Click="Button_Click_2"  Style="{StaticResource MainButton}" Margin="674,625,0,0"/>
+        <Button Content="-" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="40" Click="Button_Click_3" Style="{StaticResource MainButton}" Margin="720,625,0,0"/>
+        <Label Content="Страница администратора" Foreground="White" HorizontalAlignment="Left" Margin="575,10,0,0" VerticalAlignment="Top" FontSize="56"/>
+        <Label Content="Управление балансом выбранного пользователя:" Foreground="White" HorizontalAlignment="Left" Margin="131,627,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <ListView Margin="904,149,0,0" HorizontalAlignment="Left" Width="366" VerticalAlignment="Top" Height="471" ItemsSource="{Binding PlacesList, Mode=TwoWay}" SelectedItem="{Binding SelectedPlace}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn  DisplayMemberBinding="{Binding Path= ID_Place}" Width="70">
+                        <Label Content="Номер &#xD;&#xA;места"></Label>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Special_place}" Width="90">
+                        <Label Content="Специальное &#xD;&#xA;место?"></Label>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID_Owner}" Width="100">ID владельца</GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID_PASS}" Width="100">ID абонемента</GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="TextBoxSearchPlace"  HorizontalAlignment="Left" Height="40"  VerticalAlignment="Top" Width="246" Margin="904,104,0,0"  FontSize="20">
+            <TextBox.Template>
+                <ControlTemplate>
+                    <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
+                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
+                    </Border>
+                </ControlTemplate>
+            </TextBox.Template>
+        </TextBox>
+        <Button Content="Поиск" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="115" Click="Button_Click_4" Style="{StaticResource MainButton}" Margin="1155,104,0,0"/>
+        <Button Content="Освободить выбранное место" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="366" Click="Button_Click_5" Style="{StaticResource MainButton}" Margin="904,624,0,0"/>
+    </Grid>
+</Page>

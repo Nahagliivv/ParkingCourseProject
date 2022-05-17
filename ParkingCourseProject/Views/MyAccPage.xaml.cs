@@ -72,55 +72,75 @@ namespace ParkingCourseProject.Views
         //нажатие на кнопку сохраненния
         private void Button_MouseDown(object sender, RoutedEventArgs e)
         {
-            bool isPasswordChange = false;
-            if(TextBoxRepeatNewPassword.Password!=""|| TextBoxNewPassword.Password != "" || TextBoxOldPassword.Password != "") { isPasswordChange = true; }
-            using (var db = new ParkingDBEntities())
+            try
             {
-                var user = db.OWNER.FirstOrDefault(q => q.Tel_number == CurrentUser.UserRef.Tel_number);
-                if (HashPssword.VerifyHashedPassword(user.Password, TextBoxOldPassword.Password) || !isPasswordChange)
+                bool isPasswordChange = false;
+                if (TextBoxRepeatNewPassword.Password != "" || TextBoxNewPassword.Password != "" || TextBoxOldPassword.Password != "") { isPasswordChange = true; }
+                using (var db = new ParkingDBEntities())
                 {
-                    var passExp = new Regex(@"^(?=.{8,16}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*$");
-                    if (!passExp.IsMatch(TextBoxNewPassword.Password) && isPasswordChange) { ErrorMessage.Content = "В пароле должны быть: цифра, буквы нижнего и верхнего \nрегистра, длина от 8 до 16 символов"; return; }
-                    if(TextBoxNewPassword.Password!= TextBoxRepeatNewPassword.Password && !isPasswordChange) { ErrorMessage.Content = "Пароли не совпадают"; return; }
-                    user.Adress = TextBoxAddres.Text;
-                    if (isPasswordChange)
+                    var user = db.OWNER.FirstOrDefault(q => q.Tel_number == CurrentUser.UserRef.Tel_number);
+                    if (HashPssword.VerifyHashedPassword(user.Password, TextBoxOldPassword.Password) || !isPasswordChange)
                     {
-                        user.Password = HashPssword.Hash(TextBoxNewPassword.Password);
+                        var passExp = new Regex(@"^(?=.{8,16}$)(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9]).*$");
+                        if (!passExp.IsMatch(TextBoxNewPassword.Password) && isPasswordChange) { ErrorMessage.Content = "В пароле должны быть: цифра, буквы нижнего и верхнего \nрегистра, длина от 8 до 16 символов"; return; }
+                        if (TextBoxNewPassword.Password != TextBoxRepeatNewPassword.Password && !isPasswordChange) { ErrorMessage.Content = "Пароли не совпадают"; return; }
+                        user.Adress = TextBoxAddres.Text;
+                        if (isPasswordChange)
+                        {
+                            user.Password = HashPssword.Hash(TextBoxNewPassword.Password);
+                        }
+                        user.Full_name = TextBoxName.Text;
+                        user.IMG = editImg;
+                        user.Tel_number = TextBoxPhoneNumber.Text;
+                        db.SaveChanges();
+                        CurrentUser.UserRef = user;
+                        MessageBox.Show("Данные успешно изменены");
                     }
-                    user.Full_name = TextBoxName.Text;
-                    user.IMG = editImg;
-                    user.Tel_number = TextBoxPhoneNumber.Text;
-                    db.SaveChanges();
-                    CurrentUser.UserRef = user;
-                    MessageBox.Show("Данные успешно изменены");
-                }
-                else
-                {
-                    ErrorMessage.Content = "Неверный старый пароль";
-                    return;
+                    else
+                    {
+                        ErrorMessage.Content = "Неверный старый пароль";
+                        return;
+                    }
+
                 }
             }
+            catch { MessageBox.Show("Ошибка сохранения данных в бд"); return; }
+            
         }
         void InitPasses()
         {
-            using (var db = new ParkingDBEntities())
+            try
             {
-                var passes = db.PASS.Where(x => x.ID_Owner == CurrentUser.UserRef.ID_Owner);
-                foreach(var x in passes)
+                using (var db = new ParkingDBEntities())
                 {
-                    PassesList.Add(x);
+                    var passes = db.PASS.Where(x => x.ID_Owner == CurrentUser.UserRef.ID_Owner);
+                    foreach (var x in passes)
+                    {
+                        PassesList.Add(x);
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка инициализации абонементов"); return;
             }
         }
         void InitTakedPlaces()
         {
-            using (var db = new ParkingDBEntities())
-            { 
-                var places = db.PLACE.Where(x => x.ID_Owner == CurrentUser.UserRef.ID_Owner);
-                foreach (var x in places)
+            try
+            {
+                using (var db = new ParkingDBEntities())
                 {
-                    LabelTakedPlaces.Content += x.ID_Place + "; ";
+                    var places = db.PLACE.Where(x => x.ID_Owner == CurrentUser.UserRef.ID_Owner);
+                    foreach (var x in places)
+                    {
+                        LabelTakedPlaces.Content += x.ID_Place + "; ";
+                    }
                 }
+            }
+            catch
+            {
+                MessageBox.Show("Ошибка инициализации занятых мест"); return;
             }
         }
     }

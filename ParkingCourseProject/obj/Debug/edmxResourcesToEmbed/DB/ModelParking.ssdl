@@ -11,6 +11,7 @@
     <Property Name="Debt" Type="money" />
     <Property Name="Password" Type="nvarchar" MaxLength="100" />
     <Property Name="IMG" Type="varbinary(max)" />
+    <Property Name="IsAdmin" Type="bit" />
   </EntityType>
   <EntityType Name="PASS">
     <Key>

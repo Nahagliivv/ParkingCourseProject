@@ -4,6 +4,7 @@
     <EntitySetMapping Name="OWNER">
       <EntityTypeMapping TypeName="ParkingDBModel.OWNER">
         <MappingFragment StoreEntitySet="OWNER">
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
           <ScalarProperty Name="ID_Owner" ColumnName="ID_Owner" />
           <ScalarProperty Name="Full_name" ColumnName="Full_name" />
           <ScalarProperty Name="Adress" ColumnName="Adress" />

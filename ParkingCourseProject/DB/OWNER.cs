@@ -29,6 +29,7 @@ namespace ParkingCourseProject.DB
         public Nullable<decimal> Debt { get; set; }
         public string Password { get; set; }
         public byte[] IMG { get; set; }
+        public Nullable<bool> IsAdmin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VEHICLE> VEHICLE { get; set; }

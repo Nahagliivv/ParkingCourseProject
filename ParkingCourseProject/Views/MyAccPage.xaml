@@ -9,7 +9,7 @@
       Title="MyAccPage">
 
     <Grid Background="#808080">
-        <Ellipse  Name="EllipsePicture" MouseDown="EllipsePicture_MouseDown" Margin="144,29,736,491" Height="200" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Ellipse  Name="EllipsePicture" MouseDown="EllipsePicture_MouseDown" Margin="144,29,736,491" Height="200" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Желательно квадратное изображение">
             <Ellipse.Fill>
                 <ImageBrush x:Name="YourImage" />
             </Ellipse.Fill>

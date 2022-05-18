@@ -9,7 +9,7 @@
       Title="MyCarsPage">
 
     <Grid>
-        <Ellipse  Name="EllipsePicture" MouseDown="EllipsePicture_MouseDown" Margin="144,29,736,491" Height="200" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <Ellipse  Name="EllipsePicture" MouseDown="EllipsePicture_MouseDown" Margin="144,29,736,491" Height="200" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Желательно квадратное изображение">
             <Ellipse.Fill>
                 <ImageBrush x:Name="CarImage" />
             </Ellipse.Fill>
@@ -50,19 +50,9 @@
             </Button.Resources>
         </Button>
         <Label Content="" Name="ErrorMessage" HorizontalAlignment="Left" Foreground="Red" Margin="58,505,0,0" VerticalAlignment="Top" Width="380" Height="47"/>
-        <TextBox x:Name="TextBoxIsSpecial" HorizontalAlignment="Left" Height="40" TextWrapping="Wrap"  VerticalAlignment="Top" Width="380" Margin="58,460,0,0"  FontSize="20" >
-            <TextBox.Template>
-                <ControlTemplate>
-                    <Border CornerRadius="12" Padding="2" BorderThickness="3" BorderBrush="white">
-                        <ScrollViewer Margin="0" x:Name="PART_ContentHost" Background="#c6c6c6" />
-                    </Border>
-                </ControlTemplate>
-            </TextBox.Template>
-        </TextBox>
         <Label Foreground="White" Content="Марка" HorizontalAlignment="Left" Margin="58,221,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Foreground="White" Content="Номер" HorizontalAlignment="Left" Margin="58,294,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Foreground="White" Content="Цвет" HorizontalAlignment="Left" Margin="58,360,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Foreground="White" Content="Специальный автомобиль?(да/нет)" HorizontalAlignment="Left" Margin="58,429,0,0" VerticalAlignment="Top" FontSize="16"/>
         <ListBox Background="#808080" HorizontalAlignment="Right" ItemsSource="{Binding CarsViews}" Height="auto" VerticalAlignment="Top" Width="619"  Margin="0,255,45,330" BorderThickness="0" HorizontalContentAlignment="Center" SelectedItem="{Binding SelectedCar}" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -80,5 +70,6 @@
                 <StaticResource ResourceKey="MainButton"/>
             </Button.Style>
         </Button>
+        <CheckBox x:Name="IsSpecial" Foreground="White" Content="Специальный автомобиль?" HorizontalAlignment="Left" Margin="69,455,0,0" VerticalAlignment="Top" FontSize="16"/>
     </Grid>
 </Page>

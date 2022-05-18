@@ -38,7 +38,7 @@ namespace ParkingCourseProject.Views
         public MyCarsPage(MainWindow mwnd)
         {
             InitializeComponent();
-            carNumber = new Regex(@"^\d{4}[А-Я]{2}-(\d){1}$");
+            carNumber = new Regex(@"^\d{4}[A-Z]{2}-(\d){1}$");
             CarsViews = new ObservableCollection<CarViewLogic>();
             InitImg();
             InitCars();
@@ -72,8 +72,7 @@ namespace ParkingCourseProject.Views
                     int countOfCurrVeh = db.VEHICLE.Count(x => x.Vehicle_number == TextBoxNumber.Text);
                     if (countOfCurrVeh != 0) { ErrorMessage.Content = "Транспорт с таким номером уже зарегистрирован"; return; }
                 }
-                if (TextBoxIsSpecial.Text.ToLower() != "да" && TextBoxIsSpecial.Text.ToLower() != "нет") { ErrorMessage.Content = "Неверно заполнено поле Специальный автомобиль"; return; }
-                if (TextBoxIsSpecial.Text.ToLower() == "да") { isSpecial = true; } else { isSpecial = false; }
+                if (IsSpecial.IsChecked==true) { isSpecial = true; } else { isSpecial = false; }
                 if (TextBoxColor.Text == "" || TextBoxBrand.Text == "") { ErrorMessage.Content = "Пустые поля не должны быть"; return; }
                 using (var db = new ParkingDBEntities())
                 {
